@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+import jinja_partials
 from .config import Config
 
 # hopefully the root directory is the cwd
@@ -19,7 +19,7 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = Config.DB_URL
 
 db.init_app(app)
-
+jinja_partials.register_extensions(app)
 def create_table():
     with app.app_context():
         db.metadata.create_all(bind=db.engine, checkfirst=True)
