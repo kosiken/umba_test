@@ -20,5 +20,7 @@ else:
 
 db.init_app(app)
 
-
+def create_table():
+    with app.app_context():
+        db.metadata.create_all(bind=db.engine, checkfirst=True)
 
