@@ -4,3 +4,4 @@ app/main/database/**.db
 server.env
 migrations
 .idea
+local.py
