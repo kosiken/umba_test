@@ -29,6 +29,8 @@ class UserController:
                 limit = int(pagination)
         except Exception:
             pass
+        if limit > 100:
+            limit = 100
         paginate = db.paginate(db.select(User), per_page=limit, page=current_page)
         paginate_items = PageItem.create_page_items(paginate.page, paginate.pages)
 

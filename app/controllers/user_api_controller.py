@@ -40,7 +40,8 @@ class UserApiController:
         except Exception as e:
             print(e)
             pass
-
+        if limit > 100:
+            limit = 100
         paginate = db.paginate(query.order_by(order_by), per_page=limit, page=current_page)
 
         payload = {'type': 'success', 'message': 'fetch_users', 'data': {
