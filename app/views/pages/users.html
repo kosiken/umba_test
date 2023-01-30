@@ -1,0 +1,10 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="container">
+{{ render_partial('partials/pagination.html', has_next=has_next, page=page, has_prev=has_next, paginate_items=paginate_items, pagination=per_page) }}
+{{ render_partial('partials/users_grid.html', users=users) }}
+</div>
+{{ render_partial('partials/script.html') }}
+{% endblock %}

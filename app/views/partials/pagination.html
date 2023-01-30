@@ -1,0 +1,30 @@
+    <div class="mb-1">
+        <ul id="pagination" class="pagination">
+            <li class="page-item">
+              <a class="page-link {{'disabled' if not has_prev}}" href="/users/{{page - 1}}?pagination={{pagination}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            {% for item in paginate_items %}
+                <li class="page-item {{'active' if page == item.page}}">
+                   {% if item.page == -1 %}
+                    <span>
+                        ...
+                    </span>
+
+                    {% else %}
+                     <a class="page-link" href="/users/{{item.page}}?pagination={{pagination}}">{{item.page}}</a>
+                    {% endif %}
+
+                </li>
+            {% endfor %}
+            <li class="page-item">
+
+      <a class="page-link {{'disabled' if not has_next}}" href="/users/{{page + 1}}?pagination={{pagination}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+        </ul>
+    </div>

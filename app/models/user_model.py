@@ -24,6 +24,8 @@ class User(db.Model):
     following_url = db.Column(db.String)
     organizations_url = db.Column(db.String)
 
-
+    # Used to convert models to dictionaries
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 

@@ -34,6 +34,7 @@ def get_users(amount: int, skip=0):
 
 
 def init_db():
+    db.init_app(app)
     with app.app_context():
         db.metadata.create_all(bind=db.engine, checkfirst=True)
 

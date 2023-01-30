@@ -1,0 +1,20 @@
+  <div class="row">
+        {% for e in users %}
+        <div class="col-xs-12 col-sm-6 p-2 m-1 col-md-4 col-lg-2 card border-0 ">
+           <div class="bg-primary">
+               <p class="text-white text-center">
+                   <a class="text-white" href="https://github.com/{{e.login}}" target="_blank">
+                       {{e.id}}-{{e.login}}
+                   </a>
+               </p>
+           </div>
+           <div class="card-body py-2 text-center border border-primary">
+               <img class="avatar" src="{{e.avatar_url}}" alt="{{e.login}}">
+           </div>
+
+    </div>
+
+    {% endfor %}
+
+
+  </div>
