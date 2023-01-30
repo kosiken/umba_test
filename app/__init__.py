@@ -5,9 +5,10 @@ import sys
 # this fixes some import errors
 sys.path.insert(0, os.getcwd())
 
-from app.server import app, create_table
+from app.server import app, create_table, db
 from app.routes import setup_routing
 
+db.init_app(app)
 setup_routing(app)
 
 

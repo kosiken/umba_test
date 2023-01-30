@@ -1,6 +1,7 @@
 from flask import make_response, request
 from app.server import db, cache
 from app.models import User
+from app.utils import Utils
 
 
 class UserApiController:
@@ -9,15 +10,20 @@ class UserApiController:
     @cache.cached(timeout=30, query_string=True)
     def api_fetch_users():
         current_page = 1
+        order_dict = {
+            'id': User.id,
+            'type': User.type
+        }
         limit = 25
-        order_by = 'id'
+        order_by = None
+
         query = db.select(User)
         query_dict = {key: value for key, value in request.args.items()}
 
         try:
             page = (query_dict.get('page'))
             pagination = query_dict.get('pagination')
-            order_by = query_dict.get(order_by)
+            order_by = order_dict.get(Utils.get_or_defauls(query_dict, 'order_by', 'id'))
             user_id = query_dict.get('id')
             username = query_dict.get('username')
 
@@ -27,9 +33,6 @@ class UserApiController:
 
             if username is not None:
                 query = query.where(User.login == username)
-
-            if order_by is None:
-                order_by = 'id'
             if page is not None:
                 current_page = int(page)
             if pagination is not None:
@@ -37,6 +40,7 @@ class UserApiController:
         except Exception as e:
             print(e)
             pass
+
         paginate = db.paginate(query.order_by(order_by), per_page=limit, page=current_page)
 
         payload = {'type': 'success', 'message': 'fetch_users', 'data': {
