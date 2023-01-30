@@ -1,0 +1,6 @@
+env
+app/main/database/**.db
+migrations
+.idea
+app/.env
+server.env
