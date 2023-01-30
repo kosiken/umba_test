@@ -5,3 +5,4 @@ server.env
 migrations
 .idea
 local.py
+app/.env
