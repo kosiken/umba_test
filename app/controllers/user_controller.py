@@ -10,7 +10,7 @@ class UserController:
     @staticmethod
     def index_page():
 
-        paginate = db.paginate(db.select(User), per_page=35, page=1)
+        paginate = db.paginate(db.select(User), per_page=25, page=1)
         paginate_items = PageItem.create_page_items(paginate.page, paginate.pages)
 
         return render_template('pages/index.html', users=paginate.items, page=paginate.page, per_page=35,
@@ -20,7 +20,7 @@ class UserController:
     @staticmethod
     def fetch_users(page='1'):
         current_page = 1
-        limit = 35
+        limit = 25
         query_dict = {key: value for key, value in request.args.items()}
         try:
             current_page = int(page)
