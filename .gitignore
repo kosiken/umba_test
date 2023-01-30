@@ -1,0 +1,4 @@
+env
+env/**
+app/main/database/**.db
+server.env
